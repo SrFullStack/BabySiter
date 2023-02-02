@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Entity;
+using Microsoft.AspNetCore.Mvc;
+using Service;
+
+
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -8,6 +12,11 @@ namespace BabySiter.Controllers
     [ApiController]
     public class BabytSiterController : ControllerBase
     {
+        private readonly IBabysiterService _IBabysiterService;
+        public BabytSiterController(IBabysiterService IBabysiterService)
+        {
+            _IBabysiterService = IBabysiterService;
+        }
         // GET: api/<BabytSiterController>
         [HttpGet]
         public IEnumerable<string> Get()
@@ -17,9 +26,14 @@ namespace BabySiter.Controllers
 
         // GET api/<BabytSiterController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+       async public Task<ActionResult<Babysiter>> Get([FromQuery] string Password, [FromQuery] string Email)
         {
-            return "value";
+            Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
+            if(babysiter!=null)
+            {
+                return Ok(babysiter);
+            }
+            return (NoContent());
         }
 
         // POST api/<BabytSiterController>
