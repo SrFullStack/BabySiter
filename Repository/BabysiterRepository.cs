@@ -32,5 +32,11 @@ namespace Repository
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;
         }
+        public async Task<Babysiter> put(string id,Babysiter babysiter)
+        {
+            _DB_BABYSITERContext.Babysiters.Update(babysiter);
+            await _DB_BABYSITERContext.SaveChangesAsync();
+            return babysiter;
+        }
     }
 }

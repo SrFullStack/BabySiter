@@ -8,6 +8,8 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddScoped<IBabysiterService, BabysiterService>();
 builder.Services.AddScoped<IBabysiterRepository, BabysiterRepository>();
+builder.Services.AddScoped<ISearchBabySiterService, SearchBabySiterService>();
+builder.Services.AddScoped<ISearchBabySiterRepository, SearchBabySiterRepository>();
 
 builder.Services.AddControllers();
 

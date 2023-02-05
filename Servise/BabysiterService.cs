@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Service
 {
-    public class BabysiterService: IBabysiterService
+    public class BabysiterService : IBabysiterService
     {
         private readonly IBabysiterRepository _IBabysiterRepository;
         public BabysiterService(IBabysiterRepository IBabysiterRepository)
@@ -17,23 +17,33 @@ namespace Service
             _IBabysiterRepository = IBabysiterRepository;
         }
 
-       async public Task<Babysiter> Get(string Password, string Email)
+        async public Task<Babysiter> Get(string Password, string Email)
         {
             {
-          
+
                 return await _IBabysiterRepository.Get(Password, Email);
 
 
             }
         }
-        public async Task<Babysiter> Insert(Babysiter babysiter )
+        public async Task<Babysiter> Insert(Babysiter babysiter)
         {
             Babysiter resbabysiter = await _IBabysiterRepository.Insert(babysiter);
-            if (resbabysiter !=null)
+            if (resbabysiter != null)
             {
                 return resbabysiter;
             }
             return null;
         }
+        public  void put(string id,Babysiter babysiter)
+        {
+            _IBabysiterRepository.put(id,babysiter);
+
+
+        }
+
+
     }
+
 }
+

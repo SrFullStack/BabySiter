@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace Entity
 {
@@ -16,7 +17,7 @@ namespace Entity
         public int? Phone { get; set; }
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
-
+        [JsonIgnore]
         public virtual ICollection<RequsetSearchBabysiter> RequsetSearchBabysiters { get; set; }
     }
 }
