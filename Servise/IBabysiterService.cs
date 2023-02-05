@@ -10,6 +10,6 @@ namespace Service
     public interface IBabysiterService
     {
         Task<Babysiter> Get(string Password, string Email);
-
+        Task<Babysiter> Insert(Babysiter babysiter);
     }
 }

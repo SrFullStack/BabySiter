@@ -1,8 +1,11 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
-
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+
 builder.Services.AddScoped<IBabysiterService, BabysiterService>();
 builder.Services.AddScoped<IBabysiterRepository, BabysiterRepository>();
 

@@ -10,5 +10,6 @@ namespace Repository
     public interface IBabysiterRepository
 {
         Task<Babysiter> Get(string Password, string Email);
+        Task<Babysiter> Insert(Babysiter babysiter);
     }
 }

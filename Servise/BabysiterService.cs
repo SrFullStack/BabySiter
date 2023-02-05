@@ -26,5 +26,14 @@ namespace Service
 
             }
         }
+        public async Task<Babysiter> Insert(Babysiter babysiter )
+        {
+            Babysiter resbabysiter = await _IBabysiterRepository.Insert(babysiter);
+            if (resbabysiter !=null)
+            {
+                return resbabysiter;
+            }
+            return null;
+        }
     }
 }

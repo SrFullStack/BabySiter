@@ -24,6 +24,13 @@ namespace Repository
             return userQuery.FirstOrDefault();
 
 
+
+        }
+        public async Task<Babysiter> Insert(Babysiter babysiter)
+        {
+            await _DB_BABYSITERContext.AddRangeAsync(babysiter);
+            await _DB_BABYSITERContext.SaveChangesAsync();
+            return babysiter;
         }
     }
 }

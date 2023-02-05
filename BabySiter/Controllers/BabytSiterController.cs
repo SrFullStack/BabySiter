@@ -1,4 +1,6 @@
-﻿using Entity;
+﻿using AutoMapper;
+using DTO;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -13,9 +15,17 @@ namespace BabySiter.Controllers
     public class BabytSiterController : ControllerBase
     {
         private readonly IBabysiterService _IBabysiterService;
-        public BabytSiterController(IBabysiterService IBabysiterService)
+
+        private readonly IMapper _mapper;
+
+        public BabytSiterController(IBabysiterService IBabysiterService, IMapper mapper)
         {
             _IBabysiterService = IBabysiterService;
+            _mapper = mapper;
+
+                
+
+
         }
         // GET: api/<BabytSiterController>
         [HttpGet]
@@ -26,26 +36,35 @@ namespace BabySiter.Controllers
 
         // GET api/<BabytSiterController>/5
         [HttpGet("{id}")]
-       async public Task<ActionResult<Babysiter>> Get([FromQuery] string Password, [FromQuery] string Email)
+       async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
         {
             Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
             if(babysiter!=null)
             {
-                return Ok(babysiter);
+                BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+
+                return Ok(babySiterdto);
             }
             return (NoContent());
         }
 
         // POST api/<BabytSiterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public   ActionResult<BabySiterDTO> Post([FromBody] Babysiter babysiter)
         {
+            if (_IBabysiterService.Insert(babysiter) != null)
+            {
+                BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+                return babySiterdto;
+            }
+            return StatusCode(204);
         }
 
         // PUT api/<BabytSiterController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
+
         }
 
         // DELETE api/<BabytSiterController>/5
