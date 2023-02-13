@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity
+namespace DTO
 {
-    public partial class Time
+    public class TimeDTO
     {
+
         public int TimeId { get; set; }
         public int BabysiterId { get; set; }
         public string Day { get; set; } = null!;
         public string PartOfDay { get; set; } = null!;
         public int Price { get; set; }
-   
-        public virtual Babysiter Babysiter { get; set; } = null!;
+
+
     }
 }

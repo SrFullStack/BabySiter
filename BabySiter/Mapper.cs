@@ -10,6 +10,7 @@ public Mapper()
         {
             CreateMap<Babysiter, BabySiterDTO>();
             CreateMap<SearchBabysiter,SearchBabySiterDTO >();
+            CreateMap<Time,TimeDTO>();
         }
 
     }

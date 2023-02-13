@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using DTO;
+using Entity;
 using Microsoft.AspNetCore.Mvc;
 using Service;
 
@@ -19,9 +21,6 @@ namespace BabySiter.Controllers
             _ITimeService = ITimeService;
             _mapper = mapper;
 
-
-
-
         }
         // GET: api/<TimeController>
         [HttpGet]
@@ -32,23 +31,52 @@ namespace BabySiter.Controllers
 
         // GET api/<TimeController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //async public Task<ActionResult<Time>> Get( int BabysiterId)
+        //{
+        //    Time time = await _ITimeService.Get(BabysiterId);
+        //    if (time != null)
+        //    {
+        //        //SearchBabySiterDTO searchBabySiterDTO = _mapper.Map<SearchBabysiter, SearchBabySiterDTO>(searchBabysiter);
+        //        return Ok(time);
 
+        //    }
+        //    return (NoContent());
+        //}
+
+        async public Task<ActionResult<TimeDTO>> Get(int BabysiterId)
+        {
+            Time time = await _ITimeService.Get(BabysiterId);
+            if (time != null)
+            {
+                TimeDTO timedto = _mapper.Map<Time,TimeDTO>(time);
+
+                return Ok(timedto);
+            }
+            return (NoContent());
+        }
         // POST api/<TimeController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<Time> Post([FromBody] TimeDTO TimeDTO)
         {
+            Time time = _mapper.Map<TimeDTO,Time>(TimeDTO);
+            if (_ITimeService.Insert(time) != null)
+            {
+
+                return time;
+            }
+            return StatusCode(204);
         }
+
 
         // PUT api/<TimeController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] Time time)
         {
-        }
 
+            //Babysiter babysiter = _mapper.Map<BabySiterDTO, Babysiter>(siterDTO);
+            _ITimeService.put(id, time);
+
+        }
         // DELETE api/<TimeController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
