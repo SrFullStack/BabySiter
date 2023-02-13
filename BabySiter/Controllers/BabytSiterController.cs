@@ -50,11 +50,12 @@ namespace BabySiter.Controllers
 
         // POST api/<BabytSiterController>
         [HttpPost]
-        public   ActionResult<Babysiter> Post([FromBody] Babysiter babysiter)
+        public   ActionResult<Babysiter> Post([FromBody] BabySiterDTO siterDTO)
         {
+            Babysiter babysiter = _mapper.Map<BabySiterDTO,Babysiter>(siterDTO);
             if (_IBabysiterService.Insert(babysiter) != null)
             {
-                //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+            
                 return babysiter;
             }
             return StatusCode(204);
@@ -62,8 +63,10 @@ namespace BabySiter.Controllers
 
         // PUT api/<BabytSiterController>/5
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] Babysiter babysiter)
+        public void Put(string id, [FromBody] BabySiterDTO siterDTO)
         {
+
+            Babysiter babysiter = _mapper.Map<BabySiterDTO, Babysiter>(siterDTO);
             _IBabysiterService.put(id, babysiter);
 
         }
