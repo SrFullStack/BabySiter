@@ -66,7 +66,7 @@ namespace BabySiter.Controllers
         public void Put(string id, [FromBody] BabySiterDTO siterDTO)
         {
 
-            Babysiter babysiter = _mapper.Map<BabySiterDTO, Babysiter>(siterDTO);
+            Babysiter babysiter = _mapper.Map<BabySiterDTO,Babysiter>(siterDTO);
             _IBabysiterService.put(id, babysiter);
 
         }

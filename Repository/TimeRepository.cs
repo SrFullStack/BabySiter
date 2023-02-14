@@ -36,5 +36,10 @@ namespace Repository
             await _DB_BABYSITERContext.SaveChangesAsync();
             return time;
         }
+
+        Task<Babysiter> ITimeRepository.put(int id, Time time)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

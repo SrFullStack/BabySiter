@@ -35,7 +35,7 @@ namespace Service
             }
             return null;
         }
-        public  void put(int id,Babysiter babysiter)
+        public  void put(string id,Babysiter babysiter)
         {
             _IBabysiterRepository.put(id,babysiter);
 
