@@ -37,9 +37,6 @@ namespace Repository
             return time;
         }
 
-        Task<Babysiter> ITimeRepository.put(int id, Time time)
-        {
-            throw new NotImplementedException();
-        }
+
     }
 }

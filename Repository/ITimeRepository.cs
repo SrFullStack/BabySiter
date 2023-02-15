@@ -6,6 +6,6 @@ namespace Repository
     {
         Task<Time> Get(int BabysiterId);
         Task<Time> Insert(Time time);
-        Task<Babysiter> put(int id, Time time);
+        Task<Time> put(int id, Time time);
     }
 }

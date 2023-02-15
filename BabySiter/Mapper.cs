@@ -13,7 +13,7 @@ public Mapper()
             CreateMap<SearchBabysiter,SearchBabySiterDTO >();
             
             CreateMap<Time,TimeDTO>();
-
+            CreateMap<TimeDTO, Time>();
         }
 
     }
