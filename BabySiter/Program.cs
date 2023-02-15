@@ -13,6 +13,8 @@ builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
 builder.Services.AddScoped<IRequsetSearchBabysiterRepository, RequsetSearchBabysiterRepository>();
 builder.Services.AddScoped<IRequsetSearchBabysiterService, RequsetSearchBabysiterService>();
+builder.Services.AddScoped<INeighborhoodBabysiterRepository, NeighborhoodBabysiterRepository>();
+builder.Services.AddScoped<INeighborhoodBabysiterService, NeighborhoodBabysiterService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 string ConnectionString = builder.Configuration.GetConnectionString("home");

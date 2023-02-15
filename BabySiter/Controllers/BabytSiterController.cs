@@ -90,6 +90,16 @@ namespace BabySiter.Controllers
 
             _IBabysiterService.Delete(id,babysiter);
         }
+        public ActionResult<Babysiter> Mail([FromBody] RequsetSearchBabysiter requsetSearchBabysiter)
+        {
+            
+            if (_IBabysiterService.Mail(requsetSearchBabysiter) != null)
+            {
+                Babysiter babySiter = _IBabysiterService.Mail(requsetSearchBabysiter);
+                return babySiter ;
+            }
+            return StatusCode(204);
+        }
     }
 }
    

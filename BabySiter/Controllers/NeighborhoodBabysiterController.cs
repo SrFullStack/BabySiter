@@ -36,25 +36,36 @@ namespace BabySiter.Controllers
             NeighborhoodBabysiter neighborhoodBabysiter = await _INeighborhoodBabysiterService.Get(id);
             if (neighborhoodBabysiter != null)
             {
-                NeighborhoodBabysiterDTO requsetSearchBabysiterDTO = _mapper.Map<RequsetSearchBabysiter, RequsetSearchBabysiterDTO>(requsetSearchBabysiter);
+                NeighborhoodBabysiterDTO neighborhoodBabysiterDTO = _mapper.Map<NeighborhoodBabysiter, NeighborhoodBabysiterDTO>(neighborhoodBabysiter);
                 //
-                return Ok(requsetSearchBabysiterDTO);
+                return Ok(neighborhoodBabysiterDTO);
             }
             return (NoContent());
         }
 
         // POST api/<NeighborhoodBabysiterController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public ActionResult<NeighborhoodBabysiter> Post([FromBody] NeighborhoodBabysiterDTO neighborhoodBabysiterDTO)
         {
+            NeighborhoodBabysiter neighborhoodBabysiter = _mapper.Map<NeighborhoodBabysiterDTO, NeighborhoodBabysiter>(neighborhoodBabysiterDTO);
+            if (_INeighborhoodBabysiterService.Insert(neighborhoodBabysiter) != null)
+            {
+
+                return neighborhoodBabysiter;
+            }
+            return StatusCode(204);
         }
+
 
         // PUT api/<NeighborhoodBabysiterController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] NeighborhoodBabysiterDTO neighborhoodBabysiterDTO)
         {
-        }
+            NeighborhoodBabysiter neighborhoodBabysiter = _mapper.Map<NeighborhoodBabysiterDTO, NeighborhoodBabysiter>(neighborhoodBabysiterDTO);
 
+            _INeighborhoodBabysiterService.put(id,neighborhoodBabysiter);
+
+        }
         // DELETE api/<NeighborhoodBabysiterController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)

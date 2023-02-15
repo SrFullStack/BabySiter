@@ -47,6 +47,15 @@ namespace Service
 
 
         }
+        public async Task<Babysiter> Mail(RequsetSearchBabysiter requsetSearchBabysiter)
+        {
+            Babysiter resbabysiter = await _IBabysiterRepository.Mail(requsetSearchBabysiter);
+            if (resbabysiter != null)
+            {
+                return resbabysiter;
+            }
+            return null;
+        }
 
 
     }
