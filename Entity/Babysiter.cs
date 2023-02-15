@@ -20,10 +20,9 @@ namespace Entity
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string? Description { get; set; }
-
+        [JsonIgnore]
         public virtual ICollection<NeighborhoodBabysiter> NeighborhoodBabysiters { get; set; }
-
-        
+        [JsonIgnore]
         public virtual ICollection<Time> Times { get; set; }
     }
 }

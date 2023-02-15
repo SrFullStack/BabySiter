@@ -9,7 +9,9 @@ namespace BabySiter
 public Mapper()
         {
             CreateMap<Babysiter, BabySiterDTO>();
+            CreateMap<BabySiterDTO, Babysiter>();
             CreateMap<SearchBabysiter,SearchBabySiterDTO >();
+            
             CreateMap<Time,TimeDTO>();
         }
 

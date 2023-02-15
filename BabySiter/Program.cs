@@ -13,7 +13,7 @@ builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
 builder.Services.AddControllers();
 
-string ConnectionString = builder.Configuration.GetConnectionString("school");
+string ConnectionString = builder.Configuration.GetConnectionString("home");
 
 builder.Services.AddDbContext<DB_BABYSITERContext>(option => option.UseSqlServer(ConnectionString));
 

@@ -23,7 +23,7 @@ namespace BabySiter.Controllers
             _IBabysiterService = IBabysiterService;
             _mapper = mapper;
 
-                
+
 
 
         }
@@ -36,13 +36,13 @@ namespace BabySiter.Controllers
 
         // GET api/<BabytSiterController>/5
         [HttpGet("{id}")]
-       async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
+        async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
         {
             Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
-            if(babysiter!=null)
+            if (babysiter != null)
             {
                 BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
-
+                //
                 return Ok(babySiterdto);
             }
             return (NoContent());
@@ -50,12 +50,11 @@ namespace BabySiter.Controllers
 
         // POST api/<BabytSiterController>
         [HttpPost]
-        public   ActionResult<Babysiter> Post([FromBody] BabySiterDTO siterDTO)
+        public ActionResult<Babysiter> Post([FromBody] Babysiter babysiter)
         {
-            Babysiter babysiter = _mapper.Map<BabySiterDTO,Babysiter>(siterDTO);
             if (_IBabysiterService.Insert(babysiter) != null)
             {
-            
+                //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
                 return babysiter;
             }
             return StatusCode(204);
@@ -63,10 +62,8 @@ namespace BabySiter.Controllers
 
         // PUT api/<BabytSiterController>/5
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] BabySiterDTO siterDTO)
+        public void Put(string id, [FromBody] Babysiter babysiter)
         {
-
-            Babysiter babysiter = _mapper.Map<BabySiterDTO,Babysiter>(siterDTO);
             _IBabysiterService.put(id, babysiter);
 
         }
@@ -78,3 +75,4 @@ namespace BabySiter.Controllers
         }
     }
 }
+   

@@ -42,16 +42,16 @@ namespace BabySiter.Controllers
 return (NoContent());
 
 
+
+
         }
 // POST api/<SearchBabySiterController>
 [HttpPost]
-        public ActionResult<SearchBabysiter> Post([FromBody] SearchBabySiterDTO  searchBabySiterdto)
+        public ActionResult<SearchBabysiter> Post([FromBody] SearchBabysiter searchBabysiter)
         {
-         
-            SearchBabysiter searchBabysiter = _mapper.Map< SearchBabySiterDTO, SearchBabysiter>(searchBabySiterdto);
             if (_ISearchBabySiterService.Insert(searchBabysiter) != null)
             {
-               
+                //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
                 return searchBabysiter;
             }
             return StatusCode(204);
@@ -59,10 +59,9 @@ return (NoContent());
 
 
         // PUT api/<SearchBabySiterController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] SearchBabySiterDTO searchBabySiterdto)
+        [HttpPut("{id}")]//
+        public void Put(int id, [FromBody] SearchBabysiter searchBabysiter)
         {
-            SearchBabysiter searchBabysiter = _mapper.Map<SearchBabySiterDTO, SearchBabysiter>(searchBabySiterdto);
             _ISearchBabySiterService.put(id, searchBabysiter);
 
         }
