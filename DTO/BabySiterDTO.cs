@@ -9,14 +9,16 @@ namespace DTO
     public class BabySiterDTO
     {
 
+
         public int BabysiterId { get; set; }
         public string FirstName { get; set; } = null!;
         public string? LastName { get; set; }
         public int? Phone { get; set; }
         public int Age { get; set; }
         public string Email { get; set; } = null!;
+        public string Password { get; set; } = null!;
         public string? Description { get; set; }
-  
+
 
     }
 }

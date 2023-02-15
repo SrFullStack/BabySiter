@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Entity
+namespace DTO
 {
-    public partial class RequsetSearchBabysiter
+    public class RequsetSearchBabysiterDTO
     {
         public int RequsetSearchBabysiterId { get; set; }
         public int SearchBabysiterId { get; set; }
@@ -12,9 +14,5 @@ namespace Entity
         public string Day { get; set; } = null!;
         public string? PartOfDay { get; set; }
         public int? Price { get; set; }
-        [JsonIgnore]
-        public virtual Neighborhood Neighborhood { get; set; } = null!;
-        [JsonIgnore]
-        public virtual SearchBabysiter SearchBabysiter { get; set; } = null!;
     }
 }

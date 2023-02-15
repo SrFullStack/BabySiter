@@ -41,6 +41,12 @@ namespace Service
 
 
         }
+        public void Delete(int id,Babysiter babysiter)
+        {
+            _IBabysiterRepository.Delete(id,babysiter);
+
+
+        }
 
 
     }

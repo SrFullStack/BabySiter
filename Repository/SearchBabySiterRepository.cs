@@ -28,7 +28,7 @@ namespace Repository
         }
         public async Task<SearchBabysiter> Insert(SearchBabysiter searchBabysiter)
         {
-            await _DB_BABYSITERContext.AddRangeAsync(searchBabysiter);
+            await _DB_BABYSITERContext.AddAsync(searchBabysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();
             return searchBabysiter;
         }

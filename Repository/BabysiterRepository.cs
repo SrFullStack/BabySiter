@@ -28,13 +28,19 @@ namespace Repository
         }
         public async Task<Babysiter> Insert(Babysiter babysiter)
         {
-            await _DB_BABYSITERContext.AddRangeAsync(babysiter);
+            await _DB_BABYSITERContext.AddAsync(babysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;
         }
         public async Task<Babysiter> put(string id,Babysiter babysiter)
         {
             _DB_BABYSITERContext.Babysiters.Update(babysiter);
+            await _DB_BABYSITERContext.SaveChangesAsync();
+            return babysiter;
+        }
+        public async Task<Babysiter> Delete(int id,Babysiter babysiter)
+        {
+            _DB_BABYSITERContext.Babysiters.Remove(babysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;
         }

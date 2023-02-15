@@ -23,9 +23,6 @@ namespace BabySiter.Controllers
             _IBabysiterService = IBabysiterService;
             _mapper = mapper;
 
-
-
-
         }
         // GET: api/<BabytSiterController>
         [HttpGet]
@@ -36,6 +33,17 @@ namespace BabySiter.Controllers
 
         // GET api/<BabytSiterController>/5
         [HttpGet("{id}")]
+        //async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
+        //{
+        //    Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
+        //    if (babysiter != null)
+        //    {
+        //        BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+        //        //
+        //        return Ok(babySiterdto);
+        //    }
+        //    return (NoContent());
+        //}
         async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
         {
             Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
@@ -50,28 +58,37 @@ namespace BabySiter.Controllers
 
         // POST api/<BabytSiterController>
         [HttpPost]
-        public ActionResult<Babysiter> Post([FromBody] Babysiter babysiter)
+        public ActionResult<Babysiter> Post([FromBody] BabySiterDTO babysiter)
         {
-            if (_IBabysiterService.Insert(babysiter) != null)
+            Babysiter babysiter1 = _mapper.Map< BabySiterDTO, Babysiter>(babysiter);
+
+            if (_IBabysiterService.Insert(babysiter1) != null)
             {
-                //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
-                return babysiter;
+                return babysiter1;
             }
             return StatusCode(204);
         }
 
         // PUT api/<BabytSiterController>/5
         [HttpPut("{id}")]
-        public void Put(string id, [FromBody] Babysiter babysiter)
+        //public void Put(string id, [FromBody] Babysiter babysiter)
+        //{
+        //    _IBabysiterService.put(id, babysiter);
+
+        //}
+
+        public void Put(string id, [FromBody] BabySiterDTO babysiter)
         {
-            _IBabysiterService.put(id, babysiter);
+            Babysiter babysiter1 = _mapper.Map<BabySiterDTO, Babysiter>(babysiter);
+            _IBabysiterService.put(id, babysiter1);
 
         }
-
         // DELETE api/<BabytSiterController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public void Delete(int id,[FromBody]Babysiter babysiter)
         {
+
+            _IBabysiterService.Delete(id,babysiter);
         }
     }
 }

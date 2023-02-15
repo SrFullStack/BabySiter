@@ -47,12 +47,22 @@ return (NoContent());
         }
 // POST api/<SearchBabySiterController>
 [HttpPost]
-        public ActionResult<SearchBabysiter> Post([FromBody] SearchBabysiter searchBabysiter)
+        //public ActionResult<SearchBabysiter> Post([FromBody] SearchBabysiter searchBabysiter)
+        //{
+        //    if (_ISearchBabySiterService.Insert(searchBabysiter) != null)
+        //    {
+        //        //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+        //        return searchBabysiter;
+        //    }
+        //    return StatusCode(204);
+        //}
+        public ActionResult<SearchBabysiter> Post([FromBody] SearchBabySiterDTO searchBabysiter)
         {
-            if (_ISearchBabySiterService.Insert(searchBabysiter) != null)
+            SearchBabysiter searchBabysiter1 = _mapper.Map<SearchBabySiterDTO, SearchBabysiter>(searchBabysiter);
+            if (_ISearchBabySiterService.Insert(searchBabysiter1) != null)
             {
-                //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
-                return searchBabysiter;
+                
+                return searchBabysiter1;
             }
             return StatusCode(204);
         }
@@ -60,13 +70,19 @@ return (NoContent());
 
         // PUT api/<SearchBabySiterController>/5
         [HttpPut("{id}")]//
-        public void Put(int id, [FromBody] SearchBabysiter searchBabysiter)
-        {
+                         //public void Put(int id, [FromBody] SearchBabysiter searchBabysiter)
+                         //{
+                         //    _ISearchBabySiterService.put(id, searchBabysiter);
+
+        //}
+
+        public void Put(int id, [FromBody] SearchBabySiterDTO siterDTO)
+        {   
+            SearchBabysiter searchBabysiter = _mapper.Map<SearchBabySiterDTO, SearchBabysiter>(siterDTO);
+
             _ISearchBabySiterService.put(id, searchBabysiter);
 
         }
-     
-
         // DELETE api/<SearchBabySiterController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)

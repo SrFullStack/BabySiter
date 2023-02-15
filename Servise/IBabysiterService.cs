@@ -12,5 +12,6 @@ namespace Service
         Task<Babysiter> Get(string Password, string Email);
         Task<Babysiter> Insert(Babysiter babysiter);
         void put(string id, Babysiter babysiter);
+        void Delete(int id, Babysiter babysiter);
     }
 }

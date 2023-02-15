@@ -3,16 +3,18 @@ using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddControllers();
 builder.Services.AddScoped<IBabysiterService, BabysiterService>();
 builder.Services.AddScoped<IBabysiterRepository, BabysiterRepository>();
 builder.Services.AddScoped<ISearchBabySiterService, SearchBabySiterService>();
 builder.Services.AddScoped<ISearchBabySiterRepository, SearchBabySiterRepository>();
 builder.Services.AddScoped<ITimeService, TimeService>();
 builder.Services.AddScoped<ITimeRepository, TimeRepository>();
-builder.Services.AddControllers();
+builder.Services.AddScoped<IRequsetSearchBabysiterRepository, RequsetSearchBabysiterRepository>();
+builder.Services.AddScoped<IRequsetSearchBabysiterService, RequsetSearchBabysiterService>();
 
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 string ConnectionString = builder.Configuration.GetConnectionString("home");
 
 builder.Services.AddDbContext<DB_BABYSITERContext>(option => option.UseSqlServer(ConnectionString));
