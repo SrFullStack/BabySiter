@@ -85,21 +85,21 @@ namespace BabySiter.Controllers
         }
         // DELETE api/<BabytSiterController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id,[FromBody]Babysiter babysiter)
+        public void Delete(int id)
         {
 
-            _IBabysiterService.Delete(id,babysiter);
+            _IBabysiterService.Delete(id);
         }
-        public ActionResult<Babysiter> Mail([FromBody] RequsetSearchBabysiter requsetSearchBabysiter)
-        {
+        //public ActionResult<Babysiter> Mail([FromBody] RequsetSearchBabysiter requsetSearchBabysiter)
+        //{
             
-            if (_IBabysiterService.Mail(requsetSearchBabysiter) != null)
-            {
-                Babysiter babySiter = _IBabysiterService.Mail(requsetSearchBabysiter);
-                return babySiter ;
-            }
-            return StatusCode(204);
-        }
+        //    if (_IBabysiterService.Mail(requsetSearchBabysiter) != null)
+        //    {
+        //        Babysiter babySiter = _IBabysiterService.Mail(requsetSearchBabysiter);
+        //        return babySiter ;
+        //    }
+        //    return StatusCode(204);
+        //}
     }
 }
    

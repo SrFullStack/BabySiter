@@ -41,21 +41,21 @@ namespace Service
 
 
         }
-        public void Delete(int id,Babysiter babysiter)
+        public void Delete(int id)
         {
-            _IBabysiterRepository.Delete(id,babysiter);
+            _IBabysiterRepository.Delete(id);
 
 
         }
-        public async Task<Babysiter> Mail(RequsetSearchBabysiter requsetSearchBabysiter)
-        {
-            Babysiter resbabysiter = await _IBabysiterRepository.Mail(requsetSearchBabysiter);
-            if (resbabysiter != null)
-            {
-                return resbabysiter;
-            }
-            return null;
-        }
+        //public async Task<Babysiter> Mail(RequsetSearchBabysiter requsetSearchBabysiter)
+        //{
+        //    Babysiter resbabysiter = await _IBabysiterRepository.Mail(requsetSearchBabysiter);
+        //    if (resbabysiter != null)
+        //    {
+        //        return resbabysiter;
+        //    }
+        //    return null;
+        //}
 
 
     }

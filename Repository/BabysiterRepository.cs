@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,30 +39,34 @@ namespace Repository
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;
         }
-        public async Task<Babysiter> Delete(int id,Babysiter babysiter)
+
+       
+        public async Task Delete(int id)
         {
-            _DB_BABYSITERContext.Babysiters.Remove(babysiter);
-            await _DB_BABYSITERContext.SaveChangesAsync();
-            return babysiter;
+            try
+            {
+                var babysiter = _DB_BABYSITERContext.Babysiters.Find(id);
+                if (babysiter != null)
+                {
+
+                    _DB_BABYSITERContext.Babysiters.Remove(babysiter);
+                    await _DB_BABYSITERContext.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error in DeleteBook function " + ex.Message);
+            }
         }
-        async public Task<Babysiter> Mail(RequsetSearchBabysiter requsetSearchBabysiter)
-        {
-           
+
+        //async public Task<Babysiter> Mail(RequsetSearchBabysiter requsetSearchBabysiter)
+        //{
 
 
 
-        }
 
-        //        SELECT REQUSET_SEARCH_BABYSITER.DAY, REQUSET_SEARCH_BABYSITER.PART_OF_DAY, REQUSET_SEARCH_BABYSITER.PRICE, REQUSET_SEARCH_BABYSITER.NEIGHBORHOOD_ID, BabySiter.FIRST_NAME
-        //FROM TIME
-        //JOIN REQUSET_SEARCH_BABYSITER
-        //ON REQUSET_SEARCH_BABYSITER.PRICE= TIME.PRICE and
-        //REQUSET_SEARCH_BABYSITER.PART_OF_DAY= TIME.PART_OF_DAY and
-        //REQUSET_SEARCH_BABYSITER.DAY= TIME.DAY
+        //}
 
-        //join NEIGHBORHOOD_BABYSITER
-        //on TIME.BABYSITER_ID= NEIGHBORHOOD_BABYSITER.BABYSITER_ID
-        //join BabySiter
-        //on BabySiter.BABYSITER_ID= TIME.BABYSITER_ID
+
     }
 }
