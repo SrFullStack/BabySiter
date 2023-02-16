@@ -45,7 +45,7 @@ namespace Repository
         {
             try
             {
-                var babysiter = _DB_BABYSITERContext.Babysiters.Find(id);
+                var babysiter = await _DB_BABYSITERContext.Babysiters.FindAsync(id);
                 if (babysiter != null)
                 {
 
