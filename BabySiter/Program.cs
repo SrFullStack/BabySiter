@@ -4,6 +4,11 @@ using Repository;
 using Service;
 var builder = WebApplication.CreateBuilder(args);
 //
+builder.Services.AddCors(c =>
+{
+    c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod()
+      .AllowAnyHeader());
+});
 builder.Services.AddControllers();
 builder.Services.AddScoped<IBabysiterService, BabysiterService>();
 builder.Services.AddScoped<IBabysiterRepository, BabysiterRepository>();
@@ -32,6 +37,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
 app.UseHttpsRedirection();
 

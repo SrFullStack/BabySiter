@@ -12,13 +12,13 @@ namespace BabySiter.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class BabytSiterController : ControllerBase
+    public class BabySiterController : ControllerBase
     {
         private readonly IBabysiterService _IBabysiterService;
 
         private readonly IMapper _mapper;
 
-        public BabytSiterController(IBabysiterService IBabysiterService, IMapper mapper)
+        public BabySiterController(IBabysiterService IBabysiterService, IMapper mapper)
         {
             _IBabysiterService = IBabysiterService;
             _mapper = mapper;
@@ -32,7 +32,7 @@ namespace BabySiter.Controllers
         }
 
         // GET api/<BabytSiterController>/5
-        [HttpGet("{id}")]
+        [HttpGet, Route("Get")]
         //async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
         //{
         //    Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
@@ -53,7 +53,7 @@ namespace BabySiter.Controllers
                 //
                 return Ok(babySiterdto);
             }
-            return (NoContent());
+                               return (NoContent());
         }
 
         // POST api/<BabytSiterController>
