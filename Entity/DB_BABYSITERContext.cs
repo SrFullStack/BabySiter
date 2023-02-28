@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Entity
 {
-    public partial class DB_BABYSITERContext : DbContext
+    public partial class DB_BabySiterContext : DbContext
     {
-        public DB_BABYSITERContext()
+        public DB_BabySiterContext()
         {
         }
 
-        public DB_BABYSITERContext(DbContextOptions<DB_BABYSITERContext> options)
+        public DB_BabySiterContext(DbContextOptions<DB_BabySiterContext> options)
             : base(options)
         {
         }
@@ -28,7 +28,7 @@ namespace Entity
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=SRV2\\PUPILS;Database=DB_BABYSITER;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=SRV2\\PUPILS;Database=DB_BabySiter;Trusted_Connection=True;");
             }
         }
 
@@ -44,7 +44,6 @@ namespace Entity
 
                 entity.Property(e => e.Description)
                     .HasMaxLength(50)
-
                     .HasColumnName("DESCRIPTION");
 
                 entity.Property(e => e.Email)
@@ -63,7 +62,9 @@ namespace Entity
                     .HasMaxLength(50)
                     .HasColumnName("PASSWORD");
 
-                entity.Property(e => e.Phone).HasColumnName("PHONE");
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(50)
+                    .HasColumnName("PHONE");
             });
 
             modelBuilder.Entity<Neighborhood>(entity =>
@@ -159,7 +160,9 @@ namespace Entity
                     .HasMaxLength(50)
                     .HasColumnName("PASSWORD");
 
-                entity.Property(e => e.Phone).HasColumnName("PHONE");
+                entity.Property(e => e.Phone)
+                    .HasMaxLength(50)
+                    .HasColumnName("PHONE");
             });
 
             modelBuilder.Entity<Time>(entity =>

@@ -24,7 +24,7 @@ builder.Services.AddScoped<INeighborhoodBabysiterService, NeighborhoodBabysiterS
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 string ConnectionString = builder.Configuration.GetConnectionString("school");
 
-builder.Services.AddDbContext<DB_BABYSITERContext>(option => option.UseSqlServer(ConnectionString));
+builder.Services.AddDbContext<DB_BabySiterContext>(option => option.UseSqlServer(ConnectionString));
 
 
 builder.Services.AddEndpointsApiExplorer();

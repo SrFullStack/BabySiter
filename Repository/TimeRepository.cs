@@ -9,8 +9,8 @@ namespace Repository
 {
     public class TimeRepository: ITimeRepository
     {
-        private readonly DB_BABYSITERContext _DB_BABYSITERContext;
-        public TimeRepository(DB_BABYSITERContext DB_BABYSITERContext)
+        private readonly DB_BabySiterContext _DB_BABYSITERContext;
+        public TimeRepository(DB_BabySiterContext DB_BABYSITERContext)
         {
             _DB_BABYSITERContext = DB_BABYSITERContext;
         }

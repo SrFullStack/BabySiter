@@ -10,8 +10,8 @@ namespace Repository
 {
     public class BabysiterRepository:IBabysiterRepository
     {
-        private readonly DB_BABYSITERContext _DB_BABYSITERContext;
-        public BabysiterRepository(DB_BABYSITERContext DB_BABYSITERContext)
+        private readonly DB_BabySiterContext _DB_BABYSITERContext;
+        public BabysiterRepository(DB_BabySiterContext DB_BABYSITERContext)
         {
             _DB_BABYSITERContext = DB_BABYSITERContext;
 

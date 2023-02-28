@@ -9,9 +9,9 @@ namespace Repository
 {
     public class NeighborhoodBabysiterRepository: INeighborhoodBabysiterRepository
     {
-        private readonly DB_BABYSITERContext _DB_BABYSITERContext;
+        private readonly DB_BabySiterContext _DB_BABYSITERContext;
 
-        public NeighborhoodBabysiterRepository(DB_BABYSITERContext DB_BABYSITERContext)
+        public NeighborhoodBabysiterRepository(DB_BabySiterContext DB_BABYSITERContext)
         {
             _DB_BABYSITERContext = DB_BABYSITERContext;
 

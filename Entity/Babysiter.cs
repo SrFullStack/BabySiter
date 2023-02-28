@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Entity
 {
@@ -15,14 +14,13 @@ namespace Entity
         public int BabysiterId { get; set; }
         public string FirstName { get; set; } = null!;
         public string? LastName { get; set; }
-        public int? Phone { get; set; }
         public int Age { get; set; }
         public string Email { get; set; } = null!;
         public string Password { get; set; } = null!;
         public string? Description { get; set; }
-        [JsonIgnore]
+        public string? Phone { get; set; }
+
         public virtual ICollection<NeighborhoodBabysiter> NeighborhoodBabysiters { get; set; }
-        [JsonIgnore]
         public virtual ICollection<Time> Times { get; set; }
     }
 }

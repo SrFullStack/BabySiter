@@ -9,9 +9,9 @@ namespace Repository
 {
     public class SearchBabySiterRepository: ISearchBabySiterRepository
     {
-        private readonly DB_BABYSITERContext _DB_BABYSITERContext;
+        private readonly DB_BabySiterContext _DB_BABYSITERContext;
 
-        public SearchBabySiterRepository(DB_BABYSITERContext DB_BABYSITERContext) {
+        public SearchBabySiterRepository(DB_BabySiterContext DB_BABYSITERContext) {
             _DB_BABYSITERContext= DB_BABYSITERContext;
 
 

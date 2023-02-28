@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text.Json.Serialization;
 
 namespace Entity
 {
@@ -12,9 +11,8 @@ namespace Entity
         public string Day { get; set; } = null!;
         public string? PartOfDay { get; set; }
         public int? Price { get; set; }
-        [JsonIgnore]
+
         public virtual Neighborhood Neighborhood { get; set; } = null!;
-        [JsonIgnore]
         public virtual SearchBabysiter SearchBabysiter { get; set; } = null!;
     }
 }
