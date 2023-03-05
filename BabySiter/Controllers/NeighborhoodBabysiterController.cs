@@ -30,13 +30,13 @@ namespace BabySiter.Controllers
         }
 
         // GET api/<NeighborhoodBabysiterController>/5
-        [HttpGet("{id}")]
-        async public Task<ActionResult<NeighborhoodBabysiter>> Get([FromQuery] int id)
+        [HttpGet,Route("Get")]
+        async public Task<ActionResult<NeighborhoodBabysiterDTO[]>> Get([FromQuery] int id)
         {
-            NeighborhoodBabysiter neighborhoodBabysiter = await _INeighborhoodBabysiterService.Get(id);
+            NeighborhoodBabysiter[] neighborhoodBabysiter = await _INeighborhoodBabysiterService.Get(id);
             if (neighborhoodBabysiter != null)
             {
-                NeighborhoodBabysiterDTO neighborhoodBabysiterDTO = _mapper.Map<NeighborhoodBabysiter, NeighborhoodBabysiterDTO>(neighborhoodBabysiter);
+                NeighborhoodBabysiterDTO[] neighborhoodBabysiterDTO = _mapper.Map<NeighborhoodBabysiter[], NeighborhoodBabysiterDTO[]>(neighborhoodBabysiter);
                 //
                 return Ok(neighborhoodBabysiterDTO);
             }

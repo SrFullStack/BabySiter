@@ -17,12 +17,12 @@ namespace Repository
 
 
         }
-        async public Task<NeighborhoodBabysiter> Get(int id)
+        async public Task<NeighborhoodBabysiter[]> Get(int id)
         {
             var userQuery = (from NeighborhoodBabysiter in _DB_BABYSITERContext.NeighborhoodBabysiters
                              where NeighborhoodBabysiter.BabysiterId == id
                              select NeighborhoodBabysiter).ToArray<NeighborhoodBabysiter>();
-            return userQuery.FirstOrDefault();
+            return userQuery;
 
 
 

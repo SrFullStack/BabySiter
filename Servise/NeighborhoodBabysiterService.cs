@@ -16,7 +16,7 @@ namespace Service
         {
             _neighborhoodBabysiterRepository = INeighborhoodBabysiterRepository;
         }
-        async public Task<NeighborhoodBabysiter> Get(int id)
+        async public Task<NeighborhoodBabysiter[]> Get(int id)
         {
             {
 
