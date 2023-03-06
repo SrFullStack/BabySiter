@@ -1,33 +1,55 @@
-﻿using Entity;
+﻿using DTO;
+using Entity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+
 
 namespace Repository
 {
-    public class BabysiterRepository:IBabysiterRepository
+    public class BabysiterRepository : IBabysiterRepository
     {
         private readonly DB_BabySiterContext _DB_BABYSITERContext;
         public BabysiterRepository(DB_BabySiterContext DB_BABYSITERContext)
         {
             _DB_BABYSITERContext = DB_BABYSITERContext;
-
-
         }
-        async public Task<Babysiter> Get(string Password, string Email)
-        {
-            var userQuery = (from Babysiter in _DB_BABYSITERContext.Babysiters
-                             where Babysiter.Password == Password && Babysiter.Email == Email
-                             select Babysiter).ToArray<Babysiter>();
-            return userQuery.FirstOrDefault();
+//        public  List<GetAllBaby> GetAll()
+
+//        {
+//            List<GetAllBaby> v = (List<GetAllBaby>)_DB_BABYSITERContext.Babysiters.Include(d => d.NeighborhoodBabysiters).Include(d => d.Times).Select(d => new GetAllBaby { FirstName = d.FirstName,LastName=d.LastName,NeighborhoodId=d.NeighborhoodBabysiters.
+//.}) ;
+
+
+         
 
 
 
-        }
-        public async Task<Babysiter> Insert(Babysiter babysiter)
+//    //var query = _DB_BABYSITERContext.Babysiters.Where(babsiter =>
+//    ////(age == null ? (true) : (babsiter.Age == age))
+//    //  (price == null _ ? (true) :()
+//    //  .Include(p => p.)
+//    //Babysiter[] result =  query.ToArray();
+//    //return result;er
+//}
+
+async public Task<Babysiter> Get(string Password, string Email)
+{
+    var userQuery = (from Babysiter in _DB_BABYSITERContext.Babysiters
+                     where Babysiter.Password == Password && Babysiter.Email == Email
+                     select Babysiter).ToArray<Babysiter>();
+    return userQuery.FirstOrDefault();
+
+
+
+}
+public async Task<Babysiter> Insert(Babysiter babysiter)
         {
             await _DB_BABYSITERContext.AddAsync(babysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();

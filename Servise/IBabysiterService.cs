@@ -1,4 +1,5 @@
 ﻿using Entity;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,8 @@ namespace Service
 {
     public interface IBabysiterService
     {
+        //Task<Babysiter[]> GetAll([FromQuery] int? age, [FromQuery] int? price);
+
         Task<Babysiter> Get(string Password, string Email);
         Task<Babysiter> Insert(Babysiter babysiter);
         void put(string id, Babysiter babysiter);

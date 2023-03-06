@@ -25,25 +25,18 @@ namespace BabySiter.Controllers
 
         }
         // GET: api/<BabytSiterController>
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
+        //[HttpGet,Route("GetAll")]
+        //public async Task<BabySiterDTO[]> GetAll([FromQuery] int? age, [FromQuery] int? price ){
+        //    Babysiter[]  babysiters=await _IBabysiterService.GetAll(age, price);
+        //    BabySiterDTO[] res = _mapper.Map<Babysiter[], BabySiterDTO[]>(babysiters);
+        //    return res;
+        //        }
+
+        
 
         // GET api/<BabytSiterController>/5
         [HttpGet, Route("Get")]
-        //async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
-        //{
-        //    Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
-        //    if (babysiter != null)
-        //    {
-        //        BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
-        //        //
-        //        return Ok(babySiterdto);
-        //    }
-        //    return (NoContent());
-        //}
+     
         async public Task<ActionResult<BabySiterDTO>> Get([FromQuery] string Password, [FromQuery] string Email)
         {
             Babysiter babysiter = await _IBabysiterService.Get(Password, Email);
