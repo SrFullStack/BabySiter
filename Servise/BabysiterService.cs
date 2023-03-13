@@ -17,17 +17,17 @@ namespace Service
         {
             _IBabysiterRepository = IBabysiterRepository;
         }
-        //public async Task<Babysiter[]> GetAll([FromQuery] int? age, [FromQuery] int? price)
-        //{
-           
-        //    {
-        //        return await _IBabysiterRepository.GetAll(age,price);
+        public async Task<Babysiter[]> GetAll()
+        {
+
+            {
+                return await _IBabysiterRepository.GetAll();
 
 
 
-        //    }
+            }
 
-        //}
+        }
         async public Task<Babysiter> Get(string Password, string Email)
         {
             {

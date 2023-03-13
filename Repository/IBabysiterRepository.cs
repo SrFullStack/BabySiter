@@ -10,8 +10,9 @@ namespace Repository
 {
     public interface IBabysiterRepository
 {
-        //Task<Babysiter[]> GetAll([FromQuery] int? age, [FromQuery] int? price);
-        Task<Babysiter> Get(string Password, string Email);
+        Task<Babysiter[]> GetAll();
+        
+            Task<Babysiter> Get(string Password, string Email);
         Task<Babysiter> Insert(Babysiter babysiter);
          Task<Babysiter> put(string id, Babysiter babysiter);
         Task Delete(int id);

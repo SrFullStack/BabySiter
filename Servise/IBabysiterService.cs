@@ -10,7 +10,7 @@ namespace Service
 {
     public interface IBabysiterService
     {
-        //Task<Babysiter[]> GetAll([FromQuery] int? age, [FromQuery] int? price);
+        Task<Babysiter[]> GetAll();
 
         Task<Babysiter> Get(string Password, string Email);
         Task<Babysiter> Insert(Babysiter babysiter);

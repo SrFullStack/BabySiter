@@ -20,26 +20,18 @@ namespace Repository
         {
             _DB_BABYSITERContext = DB_BABYSITERContext;
         }
-//        public  List<GetAllBaby> GetAll()
+        public async Task<Babysiter[]> GetAll()
+        {
 
-//        {
-//            List<GetAllBaby> v = (List<GetAllBaby>)_DB_BABYSITERContext.Babysiters.Include(d => d.NeighborhoodBabysiters).Include(d => d.Times).Select(d => new GetAllBaby { FirstName = d.FirstName,LastName=d.LastName,NeighborhoodId=d.NeighborhoodBabysiters.
-//.}) ;
-
-
-         
-
+                var list = (from b in _DB_BABYSITERContext.Babysiters
+                            
+                            select b).ToArray<Babysiter>();
+            return list;
 
 
-//    //var query = _DB_BABYSITERContext.Babysiters.Where(babsiter =>
-//    ////(age == null ? (true) : (babsiter.Age == age))
-//    //  (price == null _ ? (true) :()
-//    //  .Include(p => p.)
-//    //Babysiter[] result =  query.ToArray();
-//    //return result;er
-//}
+        }
 
-async public Task<Babysiter> Get(string Password, string Email)
+        async public Task<Babysiter> Get(string Password, string Email)
 {
     var userQuery = (from Babysiter in _DB_BABYSITERContext.Babysiters
                      where Babysiter.Password == Password && Babysiter.Email == Email
