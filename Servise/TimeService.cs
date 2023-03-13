@@ -19,7 +19,7 @@ namespace Service
             _ITimeRepository = ITimeRepository;
         }
 
-        async public Task<Time> Get(int BabysiterId)
+        async public Task<Time[]> Get(int BabysiterId)
         {
             {
 

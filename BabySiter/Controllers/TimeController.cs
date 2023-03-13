@@ -30,15 +30,15 @@ namespace BabySiter.Controllers
         }
 
         // GET api/<TimeController>/5
-        [HttpGet("{id}")]
+        [HttpGet,Route("Get")]
    
 
-        async public Task<ActionResult<TimeDTO>> Get(int BabysiterId)
+        async public Task<ActionResult<TimeDTO[]>> Get(int BabysiterId)
         {
-            Time time = await _ITimeService.Get(BabysiterId);
+            Time [] time = await _ITimeService.Get(BabysiterId);
             if (time != null)
             {
-                TimeDTO timedto = _mapper.Map<Time, TimeDTO>(time);
+                TimeDTO [] timedto = _mapper.Map<Time[], TimeDTO[]>(time);
 
                 return Ok(timedto);
             }

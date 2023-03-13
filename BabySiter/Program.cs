@@ -22,7 +22,7 @@ builder.Services.AddScoped<INeighborhoodBabysiterRepository, NeighborhoodBabysit
 builder.Services.AddScoped<INeighborhoodBabysiterService, NeighborhoodBabysiterService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-string ConnectionString = builder.Configuration.GetConnectionString("home");
+string ConnectionString = builder.Configuration.GetConnectionString("school");
 
 builder.Services.AddDbContext<DB_BabySiterContext>(option => option.UseSqlServer(ConnectionString));
 

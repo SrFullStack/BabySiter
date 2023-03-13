@@ -14,12 +14,12 @@ namespace Repository
         {
             _DB_BABYSITERContext = DB_BABYSITERContext;
         }
-        async public Task<Time> Get(int BabysiterId)
+        async public Task<Time[]> Get(int BabysiterId)
         {
             var userQuery = (from Time in _DB_BABYSITERContext.Times
                              where Time.BabysiterId == BabysiterId 
                              select Time).ToArray<Time>();
-            return userQuery.FirstOrDefault();
+            return userQuery;
 
 
 
