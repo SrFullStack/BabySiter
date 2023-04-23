@@ -30,7 +30,7 @@ namespace BabySiter.Controllers
         }
 
         // GET api/<SearchBabySiterController>/5
-        [HttpGet("{id}")]
+        [HttpGet, Route("Get")]
         async public  Task<ActionResult<SearchBabySiterDTO>> Get([FromQuery] string password, [FromQuery] string email) {
             SearchBabysiter searchBabysiter = await _ISearchBabySiterService.Get(password, email);
                 if (searchBabysiter != null)
