@@ -23,38 +23,35 @@ namespace Repository
         public async Task<Babysiter[]> GetAll()
         {
 
-                var list = (from b in _DB_BABYSITERContext.Babysiters
-                            
-                            select b).ToArray<Babysiter>();
+            var list = (from b in _DB_BABYSITERContext.Babysiters
+
+                        select b).ToArray<Babysiter>();
             return list;
 
 
         }
 
         async public Task<Babysiter> Get(string Password, string Email)
-{
-    var userQuery = (from Babysiter in _DB_BABYSITERContext.Babysiters
-                     where Babysiter.Password == Password && Babysiter.Email == Email
-                     select Babysiter).ToArray<Babysiter>();
-    return userQuery.FirstOrDefault();
-
-
-
-}
-public async Task<Babysiter> Insert(Babysiter babysiter)
+        {
+            var userQuery = (from Babysiter in _DB_BABYSITERContext.Babysiters
+                             where Babysiter.Password == Password && Babysiter.Email == Email
+                             select Babysiter).ToArray<Babysiter>();
+            return userQuery.FirstOrDefault();
+        }
+        public async Task<Babysiter> Insert(Babysiter babysiter)
         {
             await _DB_BABYSITERContext.AddAsync(babysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;
         }
-        public async Task<Babysiter> put(string id,Babysiter babysiter)
+        public async Task<Babysiter> put(string id, Babysiter babysiter)
         {
             _DB_BABYSITERContext.Babysiters.Update(babysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;
         }
 
-       
+
         public async Task Delete(int id)
         {
             try

@@ -46,12 +46,12 @@ namespace BabySiter.Controllers
         }
         // POST api/<TimeController>
         [HttpPost]
-        public ActionResult<Time> Post([FromBody] TimeDTO TimeDTO)
+        public async Task<ActionResult<Time>> Post([FromBody] TimeDTO TimeDTO)
         {
             Time time = _mapper.Map<TimeDTO, Time>(TimeDTO);
-            if (_ITimeService.Insert(time) != null)
+            var result = await _ITimeService.Insert(time);
+            if (result != null)
             {
-                
                 return time;
             }
             return StatusCode(204);

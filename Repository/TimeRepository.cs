@@ -27,8 +27,11 @@ namespace Repository
         public async Task<Time> Insert(Time time)
         {
             await _DB_BABYSITERContext.AddAsync(time);
-            await _DB_BABYSITERContext.SaveChangesAsync();
-            return time;
+            var result = await _DB_BABYSITERContext.SaveChangesAsync();
+            if (result > 0)
+                return time;
+            else
+                return null;
         }
         public async Task<Time> put(int id, Time time)
         {
