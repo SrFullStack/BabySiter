@@ -7,5 +7,7 @@ namespace Repository
         Task<RequsetSearchBabysiter> GetRequsetSearchBabysiter(int id);
         Task<RequsetSearchBabysiter> Insert(RequsetSearchBabysiter requsetSearchBabysiter);
      Task<RequsetSearchBabysiter> put(int id, RequsetSearchBabysiter requsetSearchBabysiter);
+        public Task GetEmail(string email);
+
     }
 }

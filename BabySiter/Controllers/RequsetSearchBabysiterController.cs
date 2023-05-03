@@ -63,7 +63,11 @@ namespace BabySiter.Controllers
             _IRequsetSearchBabysiterService.put(id, requsetSearchBabysiter);
 
         }
-
+        [HttpGet, Route("GetEmail")]
+        public Task GetEmail([FromQuery] string email)
+        {
+            return _IRequsetSearchBabysiterService.GetEmail(email);
+        }
         // DELETE api/<RequsetSearchBabysiterController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
@@ -72,3 +76,7 @@ namespace BabySiter.Controllers
 
     }
 }
+
+
+
+

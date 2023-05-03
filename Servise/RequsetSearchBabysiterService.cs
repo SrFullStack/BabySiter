@@ -39,5 +39,9 @@ namespace Service
 
 
         }
+        public Task GetEmail(string email)
+        {
+            return _IRequsetSearchBabysiterRepository.GetEmail(email);
+        }
     }
 }
