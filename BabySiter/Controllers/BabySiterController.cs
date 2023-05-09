@@ -77,17 +77,18 @@ namespace BabySiter.Controllers
         }
 
         // PUT api/<BabytSiterController>/5
-        [HttpPut("{id}")]
+
         //public void Put(string id, [FromBody] Babysiter babysiter)
         //{
         //    _IBabysiterService.put(id, babysiter);
 
         //}
-
+        [HttpPut, Route("Put")]
         public void Put(string id, [FromBody] BabySiterDTO babysiter)
         {
             Babysiter babysiter1 = _mapper.Map<BabySiterDTO, Babysiter>(babysiter);
             _IBabysiterService.put(id, babysiter1);
+           
 
         }
         // DELETE api/<BabytSiterController>/5

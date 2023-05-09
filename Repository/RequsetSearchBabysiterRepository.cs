@@ -50,7 +50,7 @@ namespace Repository
                 Port = 587,
                 UseDefaultCredentials = false, // This require to be before setting Credentials property
                 DeliveryMethod = SmtpDeliveryMethod.Network,
-                Credentials = new NetworkCredential("36325303980@mby.co.il", "Student@264"), // you must give a full email address for authentication 
+                Credentials = new NetworkCredential("36214122228@mby.co.il", "Student@264"), // you must give a full email address for authentication 
                 TargetName = "STARTTLS/smtp.office365.com", // Set to avoid MustIssueStartTlsFirst exception
                 EnableSsl = true // Set to avoid secure connection exception
             })
@@ -58,7 +58,7 @@ namespace Repository
 
                 MailMessage message = new MailMessage()
                 {
-                    From = new MailAddress("36325303980@mby.co.il"), // sender must be a full email address
+                    From = new MailAddress("36214122228@mby.co.il"), // sender must be a full email address
                     Subject = "הרשמה",
                     IsBodyHtml = true,
                     Body = "<h1>להרשמה לחצו על הלינק הבא:</h1>http://localhost:3000/",
