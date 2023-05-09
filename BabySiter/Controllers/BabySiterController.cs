@@ -50,6 +50,19 @@ namespace BabySiter.Controllers
                                return (NoContent());
         }
 
+        [HttpGet, Route("GetByEmail")]
+
+        async public Task<ActionResult<BabySiterDTO>> GetByEmail( [FromQuery] string Email)
+        {
+            Babysiter babysiter = await _IBabysiterService.GetByEmail( Email);
+            if (babysiter != null)
+            {
+                BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+                //
+                return Ok(babySiterdto);
+            }
+            return (NoContent());
+        }
         // POST api/<BabytSiterController>
         [HttpPost]
         public ActionResult<Babysiter> Post([FromBody] BabySiterDTO babysiter)

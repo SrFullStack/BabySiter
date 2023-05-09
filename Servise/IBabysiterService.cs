@@ -13,6 +13,7 @@ namespace Service
         Task<Babysiter[]> GetAll();
 
         Task<Babysiter> Get(string Password, string Email);
+        Task<Babysiter> GetByEmail( string Email);
         Task<Babysiter> Insert(Babysiter babysiter);
         void put(string id, Babysiter babysiter);
         //Task<Babysiter> Mail(RequsetSearchBabysiter requsetSearchBabysiter);

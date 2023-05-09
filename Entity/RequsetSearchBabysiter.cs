@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using System.Text.Json.Serialization;
 namespace Entity
 {
     public partial class RequsetSearchBabysiter
@@ -11,8 +11,9 @@ namespace Entity
         public string Day { get; set; } = null!;
         public string? PartOfDay { get; set; }
         public int? Price { get; set; }
-
+       
         public virtual Neighborhood Neighborhood { get; set; } = null!;
+      
         public virtual SearchBabysiter SearchBabysiter { get; set; } = null!;
     }
 }

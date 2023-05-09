@@ -37,6 +37,16 @@ namespace Service
 
             }
         }
+
+        async public Task<Babysiter> GetByEmail( string Email)
+        {
+            {
+
+                return await _IBabysiterRepository.GetByEmail(Email);
+
+
+            }
+        }
         public async Task<Babysiter> Insert(Babysiter babysiter)
         {
             Babysiter resbabysiter = await _IBabysiterRepository.Insert(babysiter);

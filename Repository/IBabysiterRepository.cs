@@ -13,6 +13,8 @@ namespace Repository
         Task<Babysiter[]> GetAll();
         
             Task<Babysiter> Get(string Password, string Email);
+        Task<Babysiter> GetByEmail( string Email);
+
         Task<Babysiter> Insert(Babysiter babysiter);
          Task<Babysiter> put(string id, Babysiter babysiter);
         Task Delete(int id);
