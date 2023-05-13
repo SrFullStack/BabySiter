@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Repository;
 using Service;
 var builder = WebApplication.CreateBuilder(args);
-//
+
 builder.Services.AddCors(c =>
 {
     c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod()
@@ -20,6 +20,8 @@ builder.Services.AddScoped<IRequsetSearchBabysiterRepository, RequsetSearchBabys
 builder.Services.AddScoped<IRequsetSearchBabysiterService, RequsetSearchBabysiterService>();
 builder.Services.AddScoped<INeighborhoodBabysiterRepository, NeighborhoodBabysiterRepository>();
 builder.Services.AddScoped<INeighborhoodBabysiterService, NeighborhoodBabysiterService>();
+builder.Services.AddScoped<INeighborhoodRepository,NeighborhoodRepository>();
+builder.Services.AddScoped<INeighborhoodService,NeighborhoodService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 string ConnectionString = builder.Configuration.GetConnectionString("home");
