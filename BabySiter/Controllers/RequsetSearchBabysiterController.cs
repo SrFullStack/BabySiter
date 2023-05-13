@@ -45,16 +45,25 @@ namespace BabySiter.Controllers
 
         // POST api/<RequsetSearchBabysiterController>
         [HttpPost]
-        public ActionResult<RequsetSearchBabysiter> Post([FromBody] RequsetSearchBabysiter requsetSearchBabysiter)
+        //public ActionResult<RequsetSearchBabysiter> Post([FromBody] RequsetSearchBabysiter requsetSearchBabysiter)
+        //{
+        //    if (_IRequsetSearchBabysiterService.Insert(requsetSearchBabysiter) != null)
+        //    {
+        //        //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
+        //        return requsetSearchBabysiter;
+        //    }
+        //    return StatusCode(204);
+        //}
+        public async Task<ActionResult<RequsetSearchBabysiter>> Post([FromBody] RequsetSearchBabysiterDTO RequsetSearchBabysiterDTO)
         {
-            if (_IRequsetSearchBabysiterService.Insert(requsetSearchBabysiter) != null)
+            RequsetSearchBabysiter RequsetSearchBabysiter = _mapper.Map<RequsetSearchBabysiterDTO, RequsetSearchBabysiter>(RequsetSearchBabysiterDTO);
+            var result = await _IRequsetSearchBabysiterService.Insert(RequsetSearchBabysiter);
+            if (result != null)
             {
-                //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
-                return requsetSearchBabysiter;
+                return RequsetSearchBabysiter;
             }
             return StatusCode(204);
         }
-    
 
         // PUT api/<RequsetSearchBabysiterController>/5
         [HttpPut("{id}")]
