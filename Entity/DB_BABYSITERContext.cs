@@ -58,6 +58,8 @@ namespace Entity
                     .HasMaxLength(50)
                     .HasColumnName("LAST_NAME");
 
+                entity.Property(e => e.NumOfOpinion).HasColumnName("NUM_OF_OPINION");
+
                 entity.Property(e => e.Password)
                     .HasMaxLength(50)
                     .HasColumnName("PASSWORD");
@@ -106,7 +108,7 @@ namespace Entity
                 entity.ToTable("REQUSET_SEARCH_BABYSITER");
 
                 entity.Property(e => e.RequsetSearchBabysiterId)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("REQUSET_SEARCH_BABYSITER_ID");
 
                 entity.Property(e => e.Day)
@@ -121,9 +123,7 @@ namespace Entity
 
                 entity.Property(e => e.Price).HasColumnName("PRICE");
 
-                entity.Property(e => e.SearchBabysiterId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("SEARCH_BABYSITER_ID");
+                entity.Property(e => e.SearchBabysiterId).HasColumnName("SEARCH_BABYSITER_ID");
 
                 entity.HasOne(d => d.Neighborhood)
                     .WithMany(p => p.RequsetSearchBabysiters)
@@ -131,9 +131,9 @@ namespace Entity
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUSET_SEARCH_BABYSITER_NEIGHBORHOOD");
 
-                entity.HasOne(d => d.SearchBabysiter)
-                    .WithMany(p => p.RequsetSearchBabysiters)
-                    .HasForeignKey(d => d.SearchBabysiterId)
+                entity.HasOne(d => d.RequsetSearchBabysiterNavigation)
+                    .WithOne(p => p.RequsetSearchBabysiter)
+                    .HasForeignKey<RequsetSearchBabysiter>(d => d.RequsetSearchBabysiterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUSET_SEARCH_BABYSITER_SEARCH_BABYSITER1");
             });

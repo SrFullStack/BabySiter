@@ -10,7 +10,7 @@ namespace Entity
             NeighborhoodBabysiters = new HashSet<NeighborhoodBabysiter>();
             Times = new HashSet<Time>();
         }
-
+        //
         public int BabysiterId { get; set; }
         public string FirstName { get; set; } = null!;
         public string? LastName { get; set; }
@@ -19,6 +19,7 @@ namespace Entity
         public string Password { get; set; } = null!;
         public string? Description { get; set; }
         public string? Phone { get; set; }
+        public int? NumOfOpinion { get; set; }
 
         public virtual ICollection<NeighborhoodBabysiter> NeighborhoodBabysiters { get; set; }
         public virtual ICollection<Time> Times { get; set; }
