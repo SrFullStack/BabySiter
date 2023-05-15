@@ -15,6 +15,7 @@ public Mapper()
             CreateMap<Time,TimeDTO>();
             CreateMap<TimeDTO, Time>();
             CreateMap<RequsetSearchBabysiter, RequsetSearchBabysiterDTO>();
+            CreateMap<RequsetSearchBabysiterDTO ,RequsetSearchBabysiter>();
             CreateMap<NeighborhoodBabysiter, NeighborhoodBabysiterDTO>();
             CreateMap< NeighborhoodBabysiterDTO, NeighborhoodBabysiter>();
 
