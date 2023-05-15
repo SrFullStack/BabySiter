@@ -10,7 +10,7 @@ namespace Entity
             NeighborhoodBabysiters = new HashSet<NeighborhoodBabysiter>();
             Times = new HashSet<Time>();
         }
-        //
+      //
         public int BabysiterId { get; set; }
         public string FirstName { get; set; } = null!;
         public string? LastName { get; set; }
