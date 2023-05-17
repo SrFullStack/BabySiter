@@ -65,11 +65,12 @@ namespace BabySiter.Controllers
         }
         // POST api/<BabytSiterController>
         [HttpPost]
-        public ActionResult<Babysiter> Post([FromBody] BabySiterDTO babysiter)
+        public async Task<ActionResult<Babysiter>> Post([FromBody] BabySiterDTO babysiter)
         {
             Babysiter babysiter1 = _mapper.Map< BabySiterDTO, Babysiter>(babysiter);
+            var result = await _IBabysiterService.Insert(babysiter1);
 
-            if (_IBabysiterService.Insert(babysiter1) != null)
+            if ( result!= null)
             {
                 return babysiter1;
             }

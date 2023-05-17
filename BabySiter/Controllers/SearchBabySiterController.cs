@@ -45,21 +45,15 @@ return (NoContent());
 
 
         }
-// POST api/<SearchBabySiterController>
-[HttpPost]
-        //public ActionResult<SearchBabysiter> Post([FromBody] SearchBabysiter searchBabysiter)
-        //{
-        //    if (_ISearchBabySiterService.Insert(searchBabysiter) != null)
-        //    {
-        //        //BabySiterDTO babySiterdto = _mapper.Map<Babysiter, BabySiterDTO>(babysiter);
-        //        return searchBabysiter;
-        //    }
-        //    return StatusCode(204);
-        //}
-        public ActionResult<SearchBabysiter> Post([FromBody] SearchBabySiterDTO searchBabysiter)
+
+        // POST api/<SearchBabySiterController>
+        [HttpPost]
+        
+        public async Task<ActionResult<SearchBabysiter>> Post([FromBody] SearchBabySiterDTO searchBabysiter)
         {
             SearchBabysiter searchBabysiter1 = _mapper.Map<SearchBabySiterDTO, SearchBabysiter>(searchBabysiter);
-            if (_ISearchBabySiterService.Insert(searchBabysiter1) != null)
+            var result = await _ISearchBabySiterService.Insert(searchBabysiter1);
+            if (result != null)
             {
                 
                 return searchBabysiter1;

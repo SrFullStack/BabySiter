@@ -13,6 +13,6 @@ namespace Entity
         public int? Price { get; set; }
 
         public virtual Neighborhood Neighborhood { get; set; } = null!;
-        public virtual SearchBabysiter RequsetSearchBabysiterNavigation { get; set; } = null!;
+        public virtual SearchBabysiter SearchBabysiter { get; set; } = null!;
     }
 }

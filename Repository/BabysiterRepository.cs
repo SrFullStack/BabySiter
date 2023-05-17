@@ -48,6 +48,10 @@ namespace Repository
         }
         public async Task<Babysiter> Insert(Babysiter babysiter)
         {
+            //var userQuery = (from requsetSearchBabysiters in _DB_BABYSITERContext.RequsetSearchBabysiters
+
+            //                  where babysiter.Age == requsetSearchBabysiters.
+            //                 select NeighborhoodBabysiter).ToArray<NeighborhoodBabysiter>();
             await _DB_BABYSITERContext.AddAsync(babysiter);
             await _DB_BABYSITERContext.SaveChangesAsync();
             return babysiter;

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+
 using Entity;
 namespace Repository
-
 {
     public partial class DB_BabySiterContext : DbContext
     {
@@ -108,9 +108,7 @@ namespace Repository
             {
                 entity.ToTable("REQUSET_SEARCH_BABYSITER");
 
-                entity.Property(e => e.RequsetSearchBabysiterId)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("REQUSET_SEARCH_BABYSITER_ID");
+                entity.Property(e => e.RequsetSearchBabysiterId).HasColumnName("REQUSET_SEARCH_BABYSITER_ID");
 
                 entity.Property(e => e.Day)
                     .HasMaxLength(50)
@@ -132,11 +130,11 @@ namespace Repository
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_REQUSET_SEARCH_BABYSITER_NEIGHBORHOOD");
 
-                entity.HasOne(d => d.RequsetSearchBabysiterNavigation)
-                    .WithOne(p => p.RequsetSearchBabysiter)
-                    .HasForeignKey<RequsetSearchBabysiter>(d => d.RequsetSearchBabysiterId)
+                entity.HasOne(d => d.SearchBabysiter)
+                    .WithMany(p => p.RequsetSearchBabysiters)
+                    .HasForeignKey(d => d.SearchBabysiterId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_REQUSET_SEARCH_BABYSITER_SEARCH_BABYSITER1");
+                    .HasConstraintName("FK_REQUSET_SEARCH_BABYSITER_SEARCH_BABYSITER");
             });
 
             modelBuilder.Entity<SearchBabysiter>(entity =>
