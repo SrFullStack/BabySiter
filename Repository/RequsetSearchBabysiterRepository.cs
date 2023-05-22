@@ -29,6 +29,17 @@ namespace Repository
 
 
         }
+
+        public async Task<RequsetSearchBabysiter[]> GetAllSearchBabysiter()
+        {
+
+            var list = (from b in _DB_BABYSITERContext.RequsetSearchBabysiters
+
+                        select b).ToArray<RequsetSearchBabysiter>();
+            return list;
+
+
+        }
         public async Task<RequsetSearchBabysiter> Insert(RequsetSearchBabysiter requsetSearchBabysiter)
         {
             await _DB_BABYSITERContext.AddAsync(requsetSearchBabysiter);

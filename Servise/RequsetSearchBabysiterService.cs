@@ -24,6 +24,15 @@ namespace Service
 
             }
         }
+        public async Task<RequsetSearchBabysiter[]> GetAllSearchBabysiter()
+        {
+
+            {
+                return await _IRequsetSearchBabysiterRepository.GetAllSearchBabysiter();
+
+            }
+
+        }
         public async Task<RequsetSearchBabysiter> Insert(RequsetSearchBabysiter requsetSearchBabysiter)
         {
             RequsetSearchBabysiter requsetSearchBabysiter1 = await _IRequsetSearchBabysiterRepository.Insert(requsetSearchBabysiter);

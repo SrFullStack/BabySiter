@@ -29,6 +29,8 @@ namespace BabySiter.Controllers
             return new string[] { "value1", "value2" };
         }
 
+
+
         // GET api/<RequsetSearchBabysiterController>/5
         [HttpGet("{id}")]
         async public Task<ActionResult<RequsetSearchBabysiterDTO>> Get([FromQuery] int id)
@@ -43,6 +45,13 @@ namespace BabySiter.Controllers
             return (NoContent());
         }
 
+        [HttpGet, Route("GetAll")]
+        public async Task<RequsetSearchBabysiterDTO[]> GetAll()
+        {
+            RequsetSearchBabysiter[] RequsetSearchBabysiter = await _IRequsetSearchBabysiterService.GetAllSearchBabysiter();
+            RequsetSearchBabysiterDTO[] res = _mapper.Map<RequsetSearchBabysiter[], RequsetSearchBabysiterDTO[]>(RequsetSearchBabysiter);
+            return res;
+        }
         // POST api/<RequsetSearchBabysiterController>
         [HttpPost]
         public async Task<ActionResult<RequsetSearchBabysiter>> Post([FromBody] RequsetSearchBabysiterDTO RequsetSearchBabysiterDTO)
