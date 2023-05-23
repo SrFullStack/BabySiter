@@ -24,7 +24,7 @@ builder.Services.AddScoped<INeighborhoodRepository,NeighborhoodRepository>();
 builder.Services.AddScoped<INeighborhoodService,NeighborhoodService>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-string ConnectionString = builder.Configuration.GetConnectionString("school");
+string ConnectionString = builder.Configuration.GetConnectionString("home");
 
 builder.Services.AddDbContext<DB_BabySiterContext>(option => option.UseSqlServer(ConnectionString));
 
