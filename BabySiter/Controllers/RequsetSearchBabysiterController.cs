@@ -95,7 +95,12 @@ namespace BabySiter.Controllers
         public void Delete(int id)
         {
         }
+        [HttpGet, Route("RequsetSearch")]
+        public Task RequsetSearch()
+        {
+            return _IRequsetSearchBabysiterService.RequsetSearch();
 
+        }
     }
 }
 

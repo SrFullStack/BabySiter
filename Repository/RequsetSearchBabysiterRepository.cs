@@ -6,6 +6,9 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.SqlClient;
+using System;
+using System.Data.SqlClient;
 
 namespace Repository
 {
@@ -91,7 +94,47 @@ namespace Repository
             }
 
         }
+        public async Task RequsetSearch()
+        {
+            
+
+           
+                string connectionString = "Data Source=DESKTOP-2DTT4MQ;Initial Catalog=DB__BABYSITER;Integrated Security=True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string query = @"
+                SELECT *
+                FROM [dbo].[TIME] t
+                JOIN [dbo].[NEIGHBORHOOD_BABYSITER] n ON t.BABYSITER_ID = n.BABYSITER_ID
+                JOIN [dbo].[REQUSET_SEARCH_BABYSITER] r ON t.DAY = r.DAY AND r.PRICE = t.PRICE AND r.PART_OF_DAY = t.PART_OF_DAY
+                    AND n.NEIGHBORHOOD_ID = r.NEIGHBORHOOD_ID";
+
+                    SqlCommand command = new SqlCommand(query, connection);
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Process the results
+                    while (reader.Read())
+                    {
+                        // Access the data using reader.GetValue() or reader["COLUMN_NAME"]
+                        // Example:
+                        int id  = reader.GetInt32(reader.GetOrdinal("NEIGHBORHOOD_BABYSITER_ID"));
+                        string name = reader.GetString(reader.GetOrdinal("DAY"));
+
+                        // ...
+                    }
+
+                    reader.Close();
+                }
+
+                Console.WriteLine("Press any key to exit.");
+                Console.ReadKey();
+            }
+        }
 
     }
-   
-}
+
+
+
+

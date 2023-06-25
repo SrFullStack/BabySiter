@@ -10,6 +10,7 @@ namespace Service
         Task<RequsetSearchBabysiter> Insert(RequsetSearchBabysiter requsetSearchBabysiter);
         void put(int id, RequsetSearchBabysiter requsetSearchBabysiter);
         public Task GetEmail(string email);
+        public Task RequsetSearch();
 
     }
 }

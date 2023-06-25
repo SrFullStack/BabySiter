@@ -52,5 +52,9 @@ namespace Service
         {
             return _IRequsetSearchBabysiterRepository.GetEmail(email);
         }
+        public Task RequsetSearch()
+        {
+            return _IRequsetSearchBabysiterRepository.RequsetSearch();
+        }
     }
 }

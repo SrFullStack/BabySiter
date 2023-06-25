@@ -9,7 +9,7 @@ namespace Repository
      Task<RequsetSearchBabysiter> put(int id, RequsetSearchBabysiter requsetSearchBabysiter);
         public Task GetEmail(string email);
         Task<RequsetSearchBabysiter[]> GetAllSearchBabysiter();
-
+        public Task RequsetSearch();
 
     }
 }
