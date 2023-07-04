@@ -12,7 +12,7 @@ using System.Data.SqlClient;
 
 namespace Repository
 {
-    public class RequsetSearchBabysiterRepository: IRequsetSearchBabysiterRepository
+    public class RequsetSearchBabysiterRepository : IRequsetSearchBabysiterRepository
     {
         private readonly DB_BabySiterContext _DB_BABYSITERContext;
 
@@ -25,7 +25,7 @@ namespace Repository
         async public Task<RequsetSearchBabysiter> GetRequsetSearchBabysiter(int id)
         {
             var userQuery = (from RequsetSearchBabysiter in _DB_BABYSITERContext.RequsetSearchBabysiters
-                             where RequsetSearchBabysiter.SearchBabysiterId== id
+                             where RequsetSearchBabysiter.SearchBabysiterId == id
                              select RequsetSearchBabysiter).ToArray<RequsetSearchBabysiter>();
             return userQuery.FirstOrDefault();
 
@@ -76,6 +76,7 @@ namespace Repository
                     Subject = "הרשמה",
                     IsBodyHtml = true,
                     Body = "<h1>להרשמה לחצו על הלינק הבא:</h1>http://localhost:3000/",
+                    //Body = $"bnmtv gcukjjgj anxprv {email}",
                     BodyEncoding = System.Text.Encoding.UTF8,
                     SubjectEncoding = System.Text.Encoding.UTF8,
 
@@ -96,44 +97,50 @@ namespace Repository
         }
         public async Task RequsetSearch()
         {
-            
+            string connectionString = "Data Source=DESKTOP-2DTT4MQ;Initial Catalog=DB__BABYSITER;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
 
-           
-                string connectionString = "Data Source=DESKTOP-2DTT4MQ;Initial Catalog=DB__BABYSITER;Integrated Security=True";
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                string query = @"
+                SELECT r.DAY, r.PART_OF_DAY, r.PRICE, n.NEIGHBORHOOD_ID, s.EMAIL, b.PHONE
+FROM [dbo].[TIME] t JOIN [dbo].[NEIGHBORHOOD_BABYSITER] n on t.BABYSITER_ID = n.BABYSITER_ID 
+JOIN [dbo].[BABYSITER] b on n.BABYSITER_ID = b.BABYSITER_ID
+JOIN [dbo].[REQUSET_SEARCH_BABYSITER] r on t.DAY=r.DAY
+AND r.PRICE=t.PRICE AND r.PART_OF_DAY=t.PART_OF_DAY
+AND n.NEIGHBORHOOD_ID=r.NEIGHBORHOOD_ID
+JOIN [dbo].[SEARCH_BABYSITER] s on r.SEARCH_BABYSITER_ID = s.SEARCH_BABYSITER_ID";
+                //FROM [dbo].[TIME] t
+                //JOIN [dbo].[BABYSITER] b on n.BABYSITER_ID = b.BABYSITER_ID
+                //JOIN [dbo].[NEIGHBORHOOD_BABYSITER] n ON t.BABYSITER_ID = n.BABYSITER_ID
+                //JOIN [dbo].[REQUSET_SEARCH_BABYSITER] r ON t.DAY = r.DAY AND r.PRICE = t.PRICE AND r.PART_OF_DAY = t.PART_OF_DAY
+                //    AND n.NEIGHBORHOOD_ID = r.NEIGHBORHOOD_ID
+                //JOIN[dbo].[SEARCH_BABYSITER] s ON r.SEARCH_BABYSITER_ID = s.SEARCH_BABYSITER_ID";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+
+                // Process the results
+                while (reader.Read())
                 {
-                    connection.Open();
-
-                    string query = @"
-                SELECT *
-                FROM [dbo].[TIME] t
-                JOIN [dbo].[NEIGHBORHOOD_BABYSITER] n ON t.BABYSITER_ID = n.BABYSITER_ID
-                JOIN [dbo].[REQUSET_SEARCH_BABYSITER] r ON t.DAY = r.DAY AND r.PRICE = t.PRICE AND r.PART_OF_DAY = t.PART_OF_DAY
-                    AND n.NEIGHBORHOOD_ID = r.NEIGHBORHOOD_ID";
-
-                    SqlCommand command = new SqlCommand(query, connection);
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    // Process the results
-                    while (reader.Read())
-                    {
-                        // Access the data using reader.GetValue() or reader["COLUMN_NAME"]
-                        // Example:
-                        int id  = reader.GetInt32(reader.GetOrdinal("NEIGHBORHOOD_BABYSITER_ID"));
-                        string name = reader.GetString(reader.GetOrdinal("DAY"));
-
-                        // ...
-                    }
-
-                    reader.Close();
+                    // Access the data using reader.GetValue() or reader["COLUMN_NAME"]
+                    // Example:
+                    //  int id  = reader.GetInt32(reader.GetOrdinal("NEIGHBORHOOD_BABYSITER_ID"));
+                    string name = reader.GetString(reader.GetOrdinal("DAY"));
+                    ///if(כל הנתונים של הבייביסטר מתאימיםלאחת הבקשות)}
+                    ///שולחת מייל לאישה שיש התאמה בינהם
+                    // ...
                 }
 
-                Console.WriteLine("Press any key to exit.");
-                Console.ReadKey();
+                reader.Close();
             }
-        }
 
+            Console.WriteLine("Press any key to exit.");
+            Console.ReadKey();
+        }
     }
+
+}
 
 
 

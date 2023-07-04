@@ -8,9 +8,7 @@ namespace DTO
 {
     public class GetAllBaby
     {
-        /// <summary>
-        /// 
-        /// </summary>
+      //
         public int BabysiterId { get; set; }
         public string FirstName { get; set; } = null!;
         public string? LastName { get; set; }
