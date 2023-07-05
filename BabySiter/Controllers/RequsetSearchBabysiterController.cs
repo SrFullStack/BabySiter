@@ -96,9 +96,9 @@ namespace BabySiter.Controllers
         {
         }
         [HttpGet, Route("RequsetSearch")]
-        public Task RequsetSearch()
+        public Task RequsetSearch(int price,string day,string part_of_day,int neighborhood_id)
         {
-            return _IRequsetSearchBabysiterService.RequsetSearch();
+            return _IRequsetSearchBabysiterService.RequsetSearch( price,  day,  part_of_day,  neighborhood_id);
 
         }
     }

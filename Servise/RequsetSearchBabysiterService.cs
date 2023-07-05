@@ -52,9 +52,9 @@ namespace Service
         {
             return _IRequsetSearchBabysiterRepository.GetEmail(email);
         }
-        public Task RequsetSearch()
+        public Task RequsetSearch(int price, string day, string part_of_day, int neighborhood_id)
         {
-            return _IRequsetSearchBabysiterRepository.RequsetSearch();
+            return _IRequsetSearchBabysiterRepository.RequsetSearch( price,  day,  part_of_day,  neighborhood_id);
         }
     }
 }

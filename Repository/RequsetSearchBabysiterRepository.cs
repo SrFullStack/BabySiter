@@ -55,7 +55,45 @@ namespace Repository
             await _DB_BABYSITERContext.SaveChangesAsync();
             return requsetSearchBabysiter;
         }
+        public async Task GetEmail(string email,string phone)
+        {
+            using (SmtpClient client = new SmtpClient()
+            {
+                Host = "smtp.office365.com",
+                Port = 587,
+                UseDefaultCredentials = false, // This require to be before setting Credentials property
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                Credentials = new NetworkCredential("36214122228@mby.co.il", "Student@264"), // you must give a full email address for authentication 
+                TargetName = "STARTTLS/smtp.office365.com", // Set to avoid MustIssueStartTlsFirst exception
+                EnableSsl = true // Set to avoid secure connection exception
+            })
+            {
 
+                MailMessage message = new MailMessage()
+                {
+                    From = new MailAddress("36214122228@mby.co.il"), // sender must be a full email address
+                    Subject = "נמצאה לך ביביסיטר מתאימה",
+                    IsBodyHtml = true,
+                    Body = $"תוכלי להתקשר לביביסיטר ולתאם איתה {phone}",
+                    //Body = $"bnmtv gcukjjgj anxprv {email}",
+                    BodyEncoding = System.Text.Encoding.UTF8,
+                    SubjectEncoding = System.Text.Encoding.UTF8,
+
+                };
+
+                message.To.Add(email);
+
+                try
+                {
+                    client.Send(message);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+        }
         public async Task GetEmail(string email)
         {
             using (SmtpClient client = new SmtpClient()
@@ -95,7 +133,7 @@ namespace Repository
             }
 
         }
-        public async Task RequsetSearch()
+        public async Task RequsetSearch(int price, string day, string part_of_day, int neighborhood_id)
         {
             string connectionString = "Data Source=DESKTOP-2DTT4MQ;Initial Catalog=DB__BABYSITER;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -125,8 +163,17 @@ JOIN [dbo].[SEARCH_BABYSITER] s on r.SEARCH_BABYSITER_ID = s.SEARCH_BABYSITER_ID
                 {
                     // Access the data using reader.GetValue() or reader["COLUMN_NAME"]
                     // Example:
-                    //  int id  = reader.GetInt32(reader.GetOrdinal("NEIGHBORHOOD_BABYSITER_ID"));
-                    string name = reader.GetString(reader.GetOrdinal("DAY"));
+                      int NEIGHBORHOOD_ID = reader.GetInt32(reader.GetOrdinal("NEIGHBORHOOD_ID"));
+                    string DAY = reader.GetString(reader.GetOrdinal("DAY"));
+                    string PART_OF_DAY = reader.GetString(reader.GetOrdinal("PART_OF_DAY"));
+                    int PRICE = reader.GetInt32(reader.GetOrdinal("PRICE"));
+                    string EMAIL = reader.GetString(reader.GetOrdinal("EMAIL"));
+                    string PHONE = reader.GetString(reader.GetOrdinal("PHONE"));
+                    if (NEIGHBORHOOD_ID==neighborhood_id && DAY==day&& PART_OF_DAY==part_of_day && PRICE==price)
+                    {
+                        GetEmail(EMAIL, PHONE);
+                        break;
+                    }
                     ///if(כל הנתונים של הבייביסטר מתאימיםלאחת הבקשות)}
                     ///שולחת מייל לאישה שיש התאמה בינהם
                     // ...
